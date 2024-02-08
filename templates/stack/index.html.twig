@@ -6,9 +6,10 @@
     <h1>Stacks</h1>       
     {% for stack in stacks %}
         {% if stack.show %}
-        <h3><a href="#">{{ stack.name }}</a></h3>
-        <p>Subscriptores: {{ stack.subscribers }}</p>
-        <p><strong>Creada por {{ stack.creator.name }}</strong></p>
+            <h3><a href="/stacks/{{ stack.id }}">{{ stack.name }}</a></h3>
+            <p>Subscriptores: {{ stack.subscribers }}</p>
+            <p><strong>Creada por {{ stack.creator.name }}</strong></p>
+            <hr>
         {% endif %}
     {% endfor %}
 {% endblock %}

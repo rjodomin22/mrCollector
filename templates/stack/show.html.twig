@@ -3,28 +3,19 @@
 {% block title %}Stack{% endblock %}
 
 {% block body %}
-    <h1>Stack</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ stack.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ stack.name }}</td>
-            </tr>
-            <tr>
-                <th>Show</th>
-                <td>{{ stack.show }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_stack_index') }}">back to list</a>
-
-    <a href="{{ path('app_stack_edit', {'id': stack.id}) }}">edit</a>
-
-    {{ include('stack/_delete_form.html.twig') }}
+    <h1>{{ stack.name }}</h1>
+    {% for season in stack.season %}
+        {% if season.show %}
+            <h3><a href="/season/{{ season.id }}">{{ season.number }}</a></h3>
+            <h5>Items de la season</h5>
+            <ul>
+            {% for item in stack.items %}
+                {% if item.show %}
+                    <li><a href="/item/{{ item.id }}">{{ item.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+            <hr>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
