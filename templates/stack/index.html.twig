@@ -3,35 +3,12 @@
 {% block title %}Stack index{% endblock %}
 
 {% block body %}
-    <h1>Stack index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Show</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for stack in stacks %}
-            <tr>
-                <td>{{ stack.id }}</td>
-                <td>{{ stack.name }}</td>
-                <td>{{ stack.show }}</td>
-                <td>
-                    <a href="{{ path('app_stack_show', {'id': stack.id}) }}">show</a>
-                    <a href="{{ path('app_stack_edit', {'id': stack.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_stack_new') }}">Create new</a>
+    <h1>Stacks</h1>       
+    {% for stack in stacks %}
+        {% if stack.show %}
+        <h3><a href="#">{{ stack.name }}</a></h3>
+        <p>Subscriptores: {{ stack.subscribers }}</p>
+        <p><strong>Creada por {{ stack.creator.name }}</strong></p>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
