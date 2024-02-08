@@ -32,6 +32,9 @@ class Item
     #[ORM\Column]
     private ?float $currentPrice = null;
 
+    #[ORM\Column]
+    private ?int $show;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Item
     public function setCurrentPrice(float $currentPrice): static
     {
         $this->currentPrice = $currentPrice;
+
+        return $this;
+    }
+
+    public function getShow(): ?User
+    {
+        return $this->show;
+    }
+
+    public function setShow(?int $show): static
+    {
+        $this->show = $show;
 
         return $this;
     }

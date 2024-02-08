@@ -27,6 +27,10 @@ class Season
     #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'season')]
     private Collection $items;
 
+    #[ORM\Column]
+    private ?int $show;
+
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -99,6 +103,18 @@ class Season
                 $item->setSeason(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getShow(): ?User
+    {
+        return $this->show;
+    }
+
+    public function setShow(?int $show): static
+    {
+        $this->show = $show;
 
         return $this;
     }
