@@ -29,10 +29,25 @@
             </tr>
             <tr>
                 <th>State</th>
-                <td>{{ user.state }}</td>
+                {# <td>{{ user.state }}</td> #}
+                {% if user.state == 1 %}
+                    <td>Baneado</td>
+                {% else %}
+                    <td>Siempre operativo</td>
+                {% endif %}
             </tr>
         </tbody>
     </table>
+
+    {% for item in user.myItems %}
+
+        <p>{{ item.item|string }}</p>
+
+    {% else %}
+
+        <p>No items</p>
+
+    {% endfor %}
 
     <a href="{{ path('app_user_index') }}">back to list</a>
 
