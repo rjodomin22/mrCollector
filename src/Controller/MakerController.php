@@ -47,6 +47,7 @@ class MakerController extends AbstractController
     {
         return $this->render('maker/show.html.twig', [
             'maker' => $maker,
+            'items' => $maker->getCreatedItems(),
         ]);
     }
 
