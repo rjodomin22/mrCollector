@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: UserItem::class, mappedBy: 'relatedUser')]
     private Collection $myItems;
 
+    #[ORM\Column]
+    private ?int $state;
+
     public function __construct()
     {
         $this->createdStacks = new ArrayCollection();
@@ -64,6 +67,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getState(): ?User
+    {
+        return $this->state;
+    }
+
+    public function setState(?int $state): static
+    {
+        $this->state = $state;
 
         return $this;
     }

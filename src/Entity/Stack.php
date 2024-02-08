@@ -28,6 +28,9 @@ class Stack
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
+    #[ORM\Column]
+    private ?int $show;
+
     public function __construct()
     {
         $this->seasons = new ArrayCollection();
@@ -51,6 +54,17 @@ class Stack
         return $this;
     }
 
+    public function getShow(): ?User
+    {
+        return $this->show;
+    }
+
+    public function setShow(?int $show): static
+    {
+        $this->show = $show;
+
+        return $this;
+    }
     /**
      * @return Collection<int, Season>
      */
