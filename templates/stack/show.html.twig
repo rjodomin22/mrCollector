@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stack{% endblock %}
+
+{% block body %}
+    <h1>{{ stack.name }}</h1>
+    {% for season in stack.season %}
+        {% if season.show %}
+            <h3><a href="/season/{{ season.id }}">{{ season.number }}</a></h3>
+            <h5>Items de la season</h5>
+            <ul>
+            {% for item in stack.items %}
+                {% if item.show %}
+                    <li><a href="/item/{{ item.id }}">{{ item.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+            <hr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

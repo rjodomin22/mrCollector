@@ -7,7 +7,11 @@
 /public/bundles/
 /var/
 /vendor/
+<<<<<<< HEAD
 /.env
+=======
+.env-change
+>>>>>>> 1cd584b23d53bfdd24b87f7f4efb5f3590501679
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

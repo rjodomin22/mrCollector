@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Maker index{% endblock %}
+
+{% block body %}
+    <h1>Maker index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Logo</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for maker in makers %}
+            <tr>
+                <td><a href="/maker/{{maker.id}}">{{ maker.name }}</a></td>
+                <td>{{ maker.logo }}</td>
+                {# <td>
+                    <a href="{{ path('app_maker_show', {'id': maker.id}) }}">show</a>
+                    <a href="{{ path('app_maker_edit', {'id': maker.id}) }}">edit</a>
+                </td> #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_maker_new') }}">Create new</a>
+{% endblock %}
