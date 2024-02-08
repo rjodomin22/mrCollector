@@ -12,6 +12,7 @@ class Item
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+    asd
 
     #[ORM\Column(length: 100)]
     private ?string $name = null;
