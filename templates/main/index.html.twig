@@ -18,18 +18,21 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Hello!</h1>
+		<h1>MrCollector!</h1>
 		{% if is_granted("ROLE_ADMIN") %}
 			<h2>Hola</h2>
 			<a href="/user">Show Users</a>
 		{% else %}
 			{% if app.user %}
-				<a href="stack/new">Nueva Colección</a>
-				<a href="stack/">Ver colecciones</a>
-				<br>
-				<a href="item/new">Nuevo objeto</a>
-				<a href="item/">Ver objetos</a>
+				<a href="stack/new">Nueva Colección</a><br/>
+				<a href="item/new">Nuevo objeto</a><br/>
+				<a href="season/new">Nueva oleada</a><br/>
 			{% endif %}
+				<a href="/stack">Ver colecciones</a>
+				<br/>
+				<a href="/item">Ver objetos</a>
+				<br/>
+				<a href="/season">Ver oleadas</a>
 		{% endif %}
 	</div>
 {% endblock %}
