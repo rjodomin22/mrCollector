@@ -118,4 +118,9 @@ class Season
 
         return $this;
     }
+
+    public function isItemOnSeason(Item $item): bool
+    {
+        return $this->items->contains($item);
+    }
 }

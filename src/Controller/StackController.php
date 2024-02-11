@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Item;
 use App\Entity\Stack;
 use App\Form\StackType;
+use App\Form\ChooseStackType;
 use App\Repository\StackRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +25,30 @@ class StackController extends AbstractController
         ]);
     }
 
+    #[Route('/chooseStack/{id}', name: 'app_stack_chose', methods: ['GET, POST'])]
+    public function chooseItemStack(Item $item, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        $stack = new Stack();
+        $form = $this->createForm(ChooseStackType::class, $stack, [
+            'stacks' => $user->getSubscribedStacks(),
+        ]);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $stack->addItem($item);
+            $entityManager->persist($stack);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_stack_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('stack/chooseStackType.html.twig', [
+            'stack' => $stack,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/new', name: 'app_stack_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -30,12 +56,9 @@ class StackController extends AbstractController
         $form = $this->createForm(StackType::class, $stack);
         $form->handleRequest($request);
 
-        $logger = new DebugStack();
-        $entityManager->getConnection()->getConfiguration()->setSQLLogger($logger);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($stack);
-            dump($logger->queries);
             $entityManager->flush();
 
             

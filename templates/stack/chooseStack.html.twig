@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Stack
+{% endblock %}
+
+{% block body %}
+	<h1>Edit Stack</h1>
+
+	{{ include('stack/_form.html.twig', {'button_label': 'Update'}) }}
+
+	<a href="{{ path('app_stack_index') }}">back to list</a>
+	<a href="/">back to main</a>
+
+	{{ include('stack/_chooseStack_form.html.twig') }}
+{% endblock %}

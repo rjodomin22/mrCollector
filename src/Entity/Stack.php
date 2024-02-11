@@ -130,4 +130,17 @@ class Stack
 
         return $this;
     }
+
+    public function isItemOnAnySeason(?Item $item): bool
+    {
+        $isOnAnySeason = false;
+        foreach($this->seasons as $season) {
+            if ($season->isItemOnSeason($item)) {
+                $isOnAnySeason = true;
+                break;
+            }
+        }
+
+        return $isOnAnySeason;
+    }
 }
