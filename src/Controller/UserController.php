@@ -42,6 +42,22 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/ban/{user}', name: 'ban', methods: ['GET'])]
+    public function ban(User $user, EntityManagerInterface $entityManager): Response{
+        $user->setState(1);
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_user_index');
+    }
+
+    #[Route('/unban/{user}', name: 'unban', methods: ['GET'])]
+    public function unBan(User $user,  EntityManagerInterface $entityManager): Response{
+        $user->setState(0);
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_user_index');
+    }
+
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {

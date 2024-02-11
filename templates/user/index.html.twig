@@ -31,9 +31,9 @@
 						<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
 						<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
 						{% if user.state == 0 %}
-							<a href="">Ban</a>
+							<a href="{{ path('ban', {'user': user.id}) }}">Ban</a>
 						{% else %}
-							<a href="">Unban</a>
+							<a href="{{ path('unban', {'user': user.id}) }}">Unban</a>
 						{% endif %}
 					</td>
 				</tr>
@@ -46,4 +46,5 @@
 	</table>
 
 	<a href="{{ path('app_user_new') }}">Create new</a>
+	<a href="/">Back to main</a>
 {% endblock %}

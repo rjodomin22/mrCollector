@@ -107,7 +107,7 @@ class Season
         return $this;
     }
 
-    public function getShow(): ?User
+    public function getShow(): ?int
     {
         return $this->show;
     }

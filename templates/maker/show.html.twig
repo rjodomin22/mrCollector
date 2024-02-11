@@ -18,9 +18,12 @@
             <tr>
                 <th>objeto:</th>
                 {% for item in items %}
-                    <tr>
-                        <td>{{item.name}}</td>
-                    </tr>
+                    {% if item.show == 1 %}
+                        <tr>
+                            <td>{{item.name}} - starting Price: {{item.startingPrice}}</td>
+                            <td>{{item.picture}} - current Price: {{item.currentPrice}}</td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
             </tr>
             
