@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\DBAL\Logging\DebugStack;
 
 #[Route('/stack')]
 class StackController extends AbstractController
@@ -29,9 +30,15 @@ class StackController extends AbstractController
         $form = $this->createForm(StackType::class, $stack);
         $form->handleRequest($request);
 
+        $logger = new DebugStack();
+        $entityManager->getConnection()->getConfiguration()->setSQLLogger($logger);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($stack);
+            dump($logger->queries);
             $entityManager->flush();
+
+            
 
             return $this->redirectToRoute('app_stack_index', [], Response::HTTP_SEE_OTHER);
         }
